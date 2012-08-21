@@ -45,5 +45,10 @@ fun factors x = List.filter (fn i => x mod i = 0) (List.tabulate (x div 2, fn i 
 (*Then, we find the ones that are primes, and take the largest one.*)
 fun max xs = foldl Int.max 0 xs;
 
-val euler3 = max (List.filter (fn x => List.length (factors x) = 1) (factors
-(Int.toLarge 600851475143)));
+(* Helper to see if a number is a prime *)
+fun isPrime 1 = true
+  | isPrime x = length (factors x) = 1;
+
+(* MosML can't do large ints, so here's a general function for
+finding the largest prime factor of a number...*)
+fun euler3 x = max (List.filter isPrime (factors x));
