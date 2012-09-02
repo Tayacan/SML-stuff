@@ -3,23 +3,18 @@ load "Int";
 load "TextIO";*)
 
 val gen = Random.newgen ();
+val start = Random.range(1,100) gen;
 
-val max = ref 100;
-val min = ref 1;
-
-val n = Random.range(!min,!max) gen;
-
-
-fun game s =
+fun game (s,n) =
 let
   val _ = print s
   val ins =Option.valOf (Int.fromString (TextIO.inputLine TextIO.stdIn))
 in
   if ins = n
-  then "Correct"
+  then game ("Correct! Guess the new number\n",Random.range(1,100) gen)
   else if ins < n 
-       then game "higher\n"
-       else game "lower\n"
+       then game ("higher\n",n)
+       else game ("lower\n",n)
 end;
 
-val _ = game "Try to guess the number\n"
+val _ = game ("Try to guess the number\n",start)
