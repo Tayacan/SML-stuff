@@ -8,7 +8,7 @@ val start = Random.range(1,100) gen;
 fun game (s,n) =
 let
   val _ = print s
-  val ins =Option.valOf (Int.fromString (TextIO.inputLine TextIO.stdIn))
+  val ins = Option.valOf (Int.fromString (TextIO.inputLine TextIO.stdIn))
 in
   if ins = n
   then game ("Correct! Guess the new number\n",Random.range(1,100) gen)
